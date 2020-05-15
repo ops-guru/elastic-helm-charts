@@ -10,22 +10,23 @@ for supported version.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Requirements](#requirements)
-- [Installing](#installing)
-  - [Install released version using Helm repository](#install-released-version-using-helm-repository)
-  - [Install development version using master branch](#install-development-version-using-master-branch)
-- [Upgrading](#upgrading)
-- [Compatibility](#compatibility)
-- [Usage notes](#usage-notes)
-- [Configuration](#configuration)
-  - [Deprecated](#deprecated)
-- [FAQ](#faq)
-  - [How to deploy this chart on a specific K8S distribution?](#how-to-deploy-this-chart-on-a-specific-k8s-distribution)
-  - [How to use Kibana with security (authentication and TLS) enabled?](#how-to-use-kibana-with-security-authentication-and-tls-enabled)
-  - [How to install OSS version of Kibana?](#how-to-install-oss-version-of-kibana)
-  - [How to install plugins?](#how-to-install-plugins)
-  - [How to import objects post-deployment?](#how-to-import-objects-post-deployment)
-- [Contributing](#contributing)
+- [Kibana Helm Chart](#kibana-helm-chart)
+  - [Requirements](#requirements)
+  - [Installing](#installing)
+    - [Install released version using Helm repository](#install-released-version-using-helm-repository)
+    - [Install development version using master branch](#install-development-version-using-master-branch)
+  - [Upgrading](#upgrading)
+  - [Compatibility](#compatibility)
+  - [Usage notes](#usage-notes)
+  - [Configuration](#configuration)
+    - [Deprecated](#deprecated)
+  - [FAQ](#faq)
+    - [How to deploy this chart on a specific K8S distribution?](#how-to-deploy-this-chart-on-a-specific-k8s-distribution)
+    - [How to use Kibana with security (authentication and TLS) enabled?](#how-to-use-kibana-with-security-authentication-and-tls-enabled)
+    - [How to install OSS version of Kibana?](#how-to-install-oss-version-of-kibana)
+    - [How to install plugins?](#how-to-install-plugins)
+    - [How to import objects post-deployment?](#how-to-import-objects-post-deployment)
+  - [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 <!-- Use this to update TOC: -->
@@ -112,6 +113,8 @@ as a reference. They are also used in the automated testing of this chart.
 | `ingress`             | Configurable [ingress][] to expose the Kibana service.                                                                                                                                         | see [values.yaml][]                |
 | `kibanaConfig`        | Allows you to add any config files in `/usr/share/kibana/config/` such as `kibana.yml` See [values.yaml][] for an example of the formatting                                                    | `{}`                               |
 | `labels`              | Configurable [labels][] applied to all Kibana pods                                                                                                                                             | `{}`                               |
+| `loadBalancerIP`           | Some cloud providers allow you to specify the loadBalancerIP. If the loadBalancerIP field is not specified, the IP is dynamically assigned. If you specify a loadBalancerIP but your cloud provider does not support the feature, the `loadbalancerIP` field is ignored. [LoadBalancer options](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)                                                                                                                                                                                                                                                                                 | `""`                                                                                                                      |
+
 | `lifecycle`           | Allows you to add [lifecycle hooks][]. See [values.yaml][] for an example of the formatting                                                                                                    | `{}`                               |
 | `nameOverride`        | Overrides the chart name for resources. If not set the name will default to `.Chart.Name`                                                                                                      | `""`                               |
 | `nodeSelector`        | Configurable [nodeSelector][] so that you can target specific nodes for your Kibana instances                                                                                                  | `{}`                               |
